@@ -157,7 +157,7 @@ public class VideoReader
     */
    public void closeVideo() throws IOException
    {
-      if(this.isClosed() == true)
+      if(this.isClosed())
       {
          return;
       }
@@ -257,7 +257,7 @@ public class VideoReader
       byte[] data;
       int read;
 
-      if(this.hasNextImage() == false)
+      if(!this.hasNextImage())
       {
          throw new IllegalStateException("No more image");
       }
@@ -273,7 +273,7 @@ public class VideoReader
       this.actualImage++;
       if(this.actualImage >= this.imageCount)
       {
-         if(this.canResetVideo() == true)
+         if(this.canResetVideo())
          {
             this.resetVideo();
          }
@@ -298,12 +298,12 @@ public class VideoReader
     */
    public void resetVideo() throws IOException
    {
-      if(this.canResetVideo() == false)
+      if(!this.canResetVideo())
       {
          throw new IllegalStateException("This video can't be reset. Only video constructs with file or URL can be reset");
       }
 
-      if(this.isClosed() == false)
+      if(!this.isClosed())
       {
          this.closeVideo();
       }
